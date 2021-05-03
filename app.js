@@ -21,18 +21,34 @@ app.get("/", function (req, res) {
 // hold empty day and will change and be used in ejs engine depending on condition
   var day = "";
 
-  // if statement to see if its the wekeend
-  if (currentDay === 5 || currentDay === 0) {
-      //weekend variable
-      day = "weekend";
-    
-  } else {
+  // switch statement to see what specific day it is
+switch(currentDay){
+case 0:
+    day= "Sunday";
+break;
+case 1:
+    day= "Monday";
+break;
+case 2:
+    day= "Tuesday";
+break;
+case 3:
+    day= "Wednesday";
+break;
+case 4:
+    day= "Thursday";
+break;
+case 5:
+    day= "Friday";
+break;
+case 6:
+    day= "Saturday";
+break;
+default:
+    console.log("Error current day is equal to " + currentDay);
 
-    // weekday variable
-       day= "weekday";
 
-    
-  }
+}
     // looks for file called list in views then pass variable to file
     res.render("list", {kindOfDay:day})
 });
