@@ -14,8 +14,13 @@ app.get("/", function(req, res){
 
     // variable which  hold the get date method
     var today = new Date();
+
+var currentDay = today.getDay();
+
+
+
 // if statement to see if its the wekeend
-    if(today.getDay() === 5 || today.getDay() === 0 ) {
+    if(currentDay === 5 || currentDay === 0 ) {
     
     res.send("It's the weekend!")
 
