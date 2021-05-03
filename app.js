@@ -18,10 +18,8 @@ app.get("/", function (req, res) {
   if (currentDay === 5 || currentDay === 0) {
     res.write("<h1>It's the weekend!</h1>");
   } else {
-    res.write("<p>It's not the weekend</p>");
-    res.write("<h1>have to Work!</h1>");
-    // can only use res.send once , use res.write multiple times
-    res.send();
+      // send over file in the directory when true
+    res.sendFile(__dirname  + "/index.html")
   }
 });
 
