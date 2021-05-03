@@ -24,6 +24,9 @@ var options = {
     month: "long"
 };
 
+// variable which  will hold method to render the options and for it to be in english
+var day = today.toLocaleDateString(en-US, options)
+
   // switch statement to see what specific day it is
 
     // looks for file called list in views then pass variable to file
