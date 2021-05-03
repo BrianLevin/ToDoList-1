@@ -12,8 +12,19 @@ const app = express();
 // home route
 app.get("/", function(req, res){
 
-    res.send("Hello")
+    // variable which  hold the get date method
+    var today = new Date();
+// if statement to see if its the wekeend
+    if(today.getDay() === 5 || today.getDay() === 0 ) {
     
+    res.send("It's the weekend!")
+
+    } else{
+
+res.send("I have to Work!")
+
+    }
+
       });
 
 
