@@ -12,9 +12,9 @@ const date= require( __dirname  + "/date.js")
 const app = express();
 
 // this is where new items will get stored, default items are also here
-let items= ["Buy Food", "Cook Food", "Eat Food"];
+const items= ["Buy Food", "Cook Food", "Eat Food"];
 // data data store for workitems
-let workItems=  [];
+const workItems=  [];
 
 // app will utilze ejs templating and view engine
 
@@ -30,7 +30,8 @@ app.use(express.static("public"))
 // home route
 app.get("/", function (req, res) {
 // hold value for the date module and call it here 
-let day =date();
+
+const day =date.getDate();
 
 
   // switch statement to see what specific day it is
@@ -47,7 +48,7 @@ let day =date();
 app.post("/", function(req,res){
     // body parser allows to grab value from new Item and saved
 
-     let item= req.body.newItem;
+     const item= req.body.newItem;
 
 if (req.body.list === "Work") {
 

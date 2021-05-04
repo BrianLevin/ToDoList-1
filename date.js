@@ -1,10 +1,9 @@
- module.exports.getDate= getDate;  
- function getDate() {
+ exports.getDate=  function () {
  // variable which  hold the new date meth
- let today = new Date();
+ const today = new Date();
 
  // options object which will display  and render values in a specific way ex. april 2th
-let options = {
+const options = {
 
    weekday:"long",
    day: "numeric",
@@ -12,27 +11,26 @@ let options = {
 };
 
 // variable which  will hold method to render the options and for it to be in english
-let day = today.toLocaleDateString("en-US", options)
-return day
+return  today.toLocaleDateString("en-US", options)
+
 
  }
 
- module.exports.getDay= getDay;  
- function getDay() {
+ exports.getDay= function () {
     // variable which  hold the new date meth
-    let today = new Date();
+    const today = new Date();
    
     // options object which will display  and render values in a specific way ex. april 2th
-   let options = {
+   const options = {
    
       weekday:"long",
       
    };
    
    // variable which  will hold method to render the options and for it to be in english
-   let day = today.toLocaleDateString("en-US", options)
-   return day
+   return today.toLocaleDateString("en-US", options)
+   
    
     }
 
-    console.log(module.exports);
+    
