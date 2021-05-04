@@ -9,29 +9,46 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-             <!--value rendered from app.js-->
-       <h1> <%= kindOfDay %></h1>
+<!-- apply css from box class and special id-->
+        <div class= "box" id= "heading">
 
-       <ul>
+<!--value rendered from app.js-->
+<h1> <%= kindOfDay %></h1>
+
+        </div>
+
+        <div class = "box">
+
+            
         
         
-        <!--  loop through list items array and render list items on page within the list tags-->
-
-         <% for (var i=0; i<newListItems.length; i++) { %>
-        <li><%= newListItems[i]%></li>
-        <% } %>
-
+                <!--  loop through list items array and render list items on page within the list tags-->
         
-               </ul>
+                 <% for (var i=0; i<newListItems.length; i++) { %>
+                     <div class= "item">
+                         <input type="checkbox">
 
+                        <p><%= newListItems[i]%></p>
+                     </div>
+              
+                <% } %>
 
-<!-- post info to the server at the home route-->
+        <!-- post info to the server at the home route-->
    <form class= "item" action= "/" method= "post" >
     <input type = "text" name= "newItem" placeholder= "New Item" autocomplete= "off">
 
-    <button type = "submit" name=  "button">Add</button>
+    <button type = "submit" name=  "button">+</button>
     
     </form>
+                
+                       
+        </div>
+             
+
+     
+
+
+
 
     
      
