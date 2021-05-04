@@ -12,6 +12,18 @@
              <!--value rendered from app.js-->
        <h1> <%= kindOfDay %></h1>
 
+       <ul>
+        <li>Buy Food</li>
+        
+        <li>Cook Food</li>
+        
+        
+        <li>Eat Food</li>
+        
+        <li><%= newListItem %></li>
+               </ul>
+
+
 <!-- post info to the server at the home route-->
    <form class= "item" action= "/" method= "post" >
     <input type = "text" name= "newItem" placeholder= "New Item" autocomplete= "off">
@@ -20,16 +32,7 @@
     
     </form>
 
-       <ul>
-<li>Buy Food</li>
-
-<li>Cook Food</li>
-
-
-<li>Eat Food</li>
-
-
-       </ul>
+    
      
         
 

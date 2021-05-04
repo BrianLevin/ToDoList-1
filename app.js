@@ -34,19 +34,22 @@ var day = today.toLocaleDateString("en-US", options)
 
     // looks for file called list in views then pass variable to file
     // day variable gets rendered here
-    res.render("list", 
-    
-    {kindOfDay:day})
+
+    // rediretced from post route and then render the kindof day and the new list item
+    res.render("list", {kindOfDay:day, newListItem: item})
 });
 
 // post request which will post the data from the input new Item to the sever
 
 app.post("/", function(req,res){
-// body parser allows to grab value from new Item
+// body parser allows to grab value from new Item and saved
 
-     var item= req.body.newItem
+var item= req.body.newItem;
 
-     console.log(item);
+// once item is saved, redirected to home route
+
+res.redirect("/")
+   
 })
 
 // local server
