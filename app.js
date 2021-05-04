@@ -11,6 +11,9 @@ const app = express();
 // the engine will look for files in the views folder by default
 app.set('view engine', 'ejs');
 
+// telling app to use body parser
+app.use(bodyParser.urlencoded({extended: true})); 
+
 // home route
 app.get("/", function (req, res) {
   // variable which  hold the new date meth
@@ -35,6 +38,16 @@ var day = today.toLocaleDateString("en-US", options)
     
     {kindOfDay:day})
 });
+
+// post request which will post the data from the input new Item to the sever
+
+app.post("/", function(req,res){
+// body parser allows to grab value from new Item
+
+     var item= req.body.newItem
+
+     console.log(item);
+})
 
 // local server
 app.listen(3000, function () {
