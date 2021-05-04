@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 // use local date.js module
 const date= require( __dirname  + "/date.js")
 
-console.log(date());
+
 
 // Creating app which utilizes the express package
 const app = express();
@@ -29,7 +29,9 @@ app.use(express.static("public"))
 
 // home route
 app.get("/", function (req, res) {
- 
+// hold value for the date module and call it here 
+let day =date();
+
 
   // switch statement to see what specific day it is
 
