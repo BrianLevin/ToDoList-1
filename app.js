@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");
 const app = express();
 
 // this is where new items will get stored, default items are also here
-var items= ["Buy Food", "Cook Food", "Eat Food"];
+let items= ["Buy Food", "Cook Food", "Eat Food"];
 
 // app will utilze ejs templating and view engine
 
@@ -17,13 +17,16 @@ app.set('view engine', 'ejs');
 // telling app to use body parser
 app.use(bodyParser.urlencoded({extended: true})); 
 
+// serve up location of static files which can be rendered in ejs
+app.use(express.static("public"))
+
 // home route
 app.get("/", function (req, res) {
   // variable which  hold the new date meth
-  var today = new Date();
+  let today = new Date();
 
   // options object which will display  and render values in a specific way ex. april 2th
-var options = {
+let options = {
 
     weekday:"long",
     day: "numeric",
@@ -31,7 +34,7 @@ var options = {
 };
 
 // variable which  will hold method to render the options and for it to be in english
-var day = today.toLocaleDateString("en-US", options)
+let day = today.toLocaleDateString("en-US", options)
 
   // switch statement to see what specific day it is
 
