@@ -83,6 +83,7 @@ res.redirect("/");
          // pass title and  foundItems to list.ejs
   res.render("list", {listTitle:"Today", newListItems: foundItems})
 
+  
     }
     
   
@@ -92,6 +93,10 @@ res.redirect("/");
 
   
 });
+// dynamic get route that goes to a custom page
+app.get("/:customListName", function (req,res){
+console.log(req.params.customListName);
+})
 
 // post request which will post the data from the input new Item to the sever
 
@@ -112,15 +117,22 @@ res.redirect ("/");
    
 });
 app.post("/delete", function(req,res){
+// hold the check box variable when it is checked
+    const checkedItemId = req.body.checkbox;
+// method to remove chekced item
+    Item.findByIdAndRemove(checkedItemId, function(err){
 
-    console.log(req.body.checkbox)
+        if (!err){
+console.log("successfully deleted checked item.")
+
+// this redirect will display the deleted check items on the page
+res.redirect("/");
+
+        }
+    })
 })
 
-// render and get the the work page
-app.get("/work", function(req,res){
-res.render("list", {listTitle: "Work List", newListItems: workItems} );
 
-})
 
 // post new work items into the work items array
 app.post("/work", function(req,res){
