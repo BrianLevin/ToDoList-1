@@ -26,7 +26,14 @@ app.use(bodyParser.urlencoded({extended: true}));
 // serve up location of static files which can be rendered in ejs
 app.use(express.static("public"))
 
+// crreate new database using mongo db connecting mongoose
 mongoose.connect("mongoose://localhost:27017/todolistDB", {useNewURLParser: true});
+
+// JSON object that defines the shape and content of the documents embedded in the document collection
+const itemsSchema = {
+    name: String
+
+}
 
 // home route
 app.get("/", function (req, res) {
