@@ -11,10 +11,7 @@ const date= require( __dirname  + "/date.js")
 // Creating app which utilizes the express package
 const app = express();
 
-// this is where new items will get stored, default items are also here
-const items= ["Buy Food", "Cook Food", "Eat Food"];
-// data data store for workitems
-const workItems=  [];
+
 
 // app will utilze ejs templating and view engine
 
