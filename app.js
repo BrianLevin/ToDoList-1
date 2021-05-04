@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"))
 
 // crreate new database using mongo db connecting mongoose
-mongoose.connect("mongoose://localhost:27017/todolistDB", {useNewURLParser: true});
+mongoose.connect("mongodb://localhost:27017/todolistDB", {useNewUrlParser: true});
 
 // JSON object that defines the shape and content of the documents embedded in the document collection
 const itemsSchema = {
@@ -34,7 +34,36 @@ const itemsSchema = {
 
 }
 // new model based on the schema
-const Item = mongoose.model("Item", itemsSchema)
+const Item = mongoose.model("Item", itemsSchema);
+
+// add values to the model
+const item1 =  new Item ({
+   
+    name: "Welcome to your todolist!"
+});
+
+const item2 =  new Item ({
+   
+    name: " hit the + button to add a new item"
+});
+
+const item3 =  new Item ({
+   
+    name: " Hit this to delete an item"
+});
+// array holding values
+const defaultItems = [item1, item2, item3];
+
+// insert item and array to database
+Item.insertMany(defaultItems, function(err){
+   
+    if (err){
+        console.log(err);
+    } else{
+
+        console.log("Successfully saved default items to database")
+    }
+});
 
 // home route
 app.get("/", function (req, res) {
