@@ -57,7 +57,7 @@ const defaultItems = [item1, item2, item3];
 // schema for which the objects documents will be based on
 const listSchema = {
 name: String,
-item: [itemsSchema]
+items: [itemsSchema]
 
 }
 // new model based on the schema // item will be collection
@@ -103,16 +103,37 @@ res.redirect("/");
 });
 // dynamic get route that goes to a custom page
 app.get("/:customListName", function (req,res){
-    // this holds what ever the user enters after the fprward slash
-const customListName= (req.params.customListName);
 
-// document which will pass into the list model
+   
+    // this holds what ever the user enters after the fprward slash
+const customListName= req.params.customListName;
+
+// method to make sure the list the user enters exists or doesnt exist already to prevent duplicate pages.
+List.findOne({name: customListName}, function(err,foundList){
+    if (!err ) {
+
+        if(!foundList) {
+            // create a new list
+            // document which will pass into the list model
 const list= new List({
     name: customListName,
     items:defaultItems
 });
-
+// save to db
 list.save();
+// display list on page
+res.redirect("/" + customListName);
+
+        } else{
+            // show an existing list
+// render dynamic esisting lists
+            res.render("list", {listTitle: foundList.name, newListItems: foundList.items} )
+        }
+    }
+});
+
+
+
 
 });
 
