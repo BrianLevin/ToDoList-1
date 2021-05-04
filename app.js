@@ -3,6 +3,8 @@ const express = require("express");
 //  acts as middle wear parses the  incoming requests and data before it is handled
 const bodyParser = require("body-parser");
 
+const mongoose = require("mongoose");
+
 // use local date.js module
 const date= require( __dirname  + "/date.js")
 
@@ -23,6 +25,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 // serve up location of static files which can be rendered in ejs
 app.use(express.static("public"))
+
+mongoose.connect("mongoose://localhost:27017/todolistDB", {useNewURLParser: true});
 
 // home route
 app.get("/", function (req, res) {
