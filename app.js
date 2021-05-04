@@ -6,6 +6,9 @@ const bodyParser = require("body-parser");
 // Creating app which utilizes the express package
 const app = express();
 
+// this is where new items will get stored
+var items= [];
+
 // app will utilze ejs templating and view engine
 
 // the engine will look for files in the views folder by default
@@ -36,7 +39,7 @@ var day = today.toLocaleDateString("en-US", options)
     // day variable gets rendered here
 
     // rediretced from post route and then render the kindof day and the new list item
-    res.render("list", {kindOfDay:day, newListItem: item})
+    res.render("list", {kindOfDay:day, newListItems: items})
 });
 
 // post request which will post the data from the input new Item to the sever
@@ -44,7 +47,10 @@ var day = today.toLocaleDateString("en-US", options)
 app.post("/", function(req,res){
 // body parser allows to grab value from new Item and saved
 
-var item= req.body.newItem;
+ item= req.body.newItem;
+
+ // push item into the items array
+ items.push(item);
 
 // once item is saved, redirected to home route
 

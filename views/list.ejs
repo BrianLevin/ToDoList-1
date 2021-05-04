@@ -20,7 +20,13 @@
         
         <li>Eat Food</li>
         
-        <li><%= newListItem %></li>
+        <!--  loop through list items array and render list items on page within the list tags-->
+
+         <% for (var i=0; i<newListItems.length; i++) { %>
+        <li><%= newListItems[i]%></li>
+        <% } %>
+
+        
                </ul>
 
 
