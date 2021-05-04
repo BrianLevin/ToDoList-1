@@ -33,7 +33,7 @@ const itemsSchema = {
     name: String
 
 }
-// new model based on the schema
+// new model based on the schema // item will be collection
 const Item = mongoose.model("Item", itemsSchema);
 
 // add values to the model
@@ -67,18 +67,23 @@ Item.insertMany(defaultItems, function(err){
 
 // home route
 app.get("/", function (req, res) {
-// hold value for the date module and call it here 
 
+    // find everthing in items collection to send over to list.ejs
+Item.find({}, function(err,foundItems){
+    
+  
+  // pass title and  foundItems to list.ejs
+  res.render("list", {listTitle:"Today", newListItems: foundItems})
+
+})
 
 
 
   // switch statement to see what specific day it is
 
-    // looks for file called list in views then pass variable to file
-    // day variable gets rendered here
+   
 
-    // rediretced from post route and then render the kindof day and the new list item
-    res.render("list", {listTitle:"Today", newListItems: items})
+  
 });
 
 // post request which will post the data from the input new Item to the sever
