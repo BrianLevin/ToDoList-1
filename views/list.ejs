@@ -13,7 +13,7 @@
         <div class= "box" id= "heading">
 
 <!--value rendered from app.js-->
-<h1> <%= kindOfDay %></h1>
+<h1> <%= listTitle %></h1>
 
         </div>
 
@@ -36,8 +36,8 @@
         <!-- post info to the server at the home route-->
    <form class= "item" action= "/" method= "post" >
     <input type = "text" name= "newItem" placeholder= "New Item" autocomplete= "off">
-
-    <button type = "submit" name=  "button">+</button>
+                                                     <!--passing the litsTitle dynmaically-->
+    <button type = "submit" name=  "list" value=  <%= listTitle %>>+</button>
     
     </form>
                 

@@ -1,3 +1,5 @@
+
+/*  webkit gradient is where the background comes from*/
 html {
     background-color: #E4E9FD;
     background-image: -webkit-linear-gradient(65deg, #A683E3 50%, #E4E9FD 50%);
@@ -30,15 +32,16 @@ html {
     border-bottom: 1px solid #F1F1F1;
   }
   
+/* look at all items in a div and then target speciifcally the last child and then apply style to it*/
   .item:last-child {
     border-bottom: 0;
   }
-  
+  /* look for input in checked state target all paragrahph elements that come after checked inputs */
   input:checked+p {
     text-decoration: line-through;
     text-decoration-color: #A683E3;
   }
-  
+   /* apply style only to check boxed items */
   input[type="checkbox"] {
     margin: 20px;
   }
@@ -84,6 +87,7 @@ html {
     box-shadow: inset 0 -3px 0 0 #A683E3;
   }
   
+  /* styles place holder on form */
   ::placeholder {
     color: grey;
     opacity: 1;

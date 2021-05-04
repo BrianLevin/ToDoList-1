@@ -8,6 +8,8 @@ const app = express();
 
 // this is where new items will get stored, default items are also here
 let items= ["Buy Food", "Cook Food", "Eat Food"];
+// data data store for workitems
+let workItems=  [];
 
 // app will utilze ejs templating and view engine
 
@@ -42,23 +44,48 @@ let day = today.toLocaleDateString("en-US", options)
     // day variable gets rendered here
 
     // rediretced from post route and then render the kindof day and the new list item
-    res.render("list", {kindOfDay:day, newListItems: items})
+    res.render("list", {listTitle:day, newListItems: items})
 });
 
 // post request which will post the data from the input new Item to the sever
 
 app.post("/", function(req,res){
-// body parser allows to grab value from new Item and saved
+    // body parser allows to grab value from new Item and saved
 
- item= req.body.newItem;
+     let item= req.body.newItem;
 
- // push item into the items array
+if (req.body.list === "Work") {
+
+    // push to work items array
+workItems.push(item)
+res.redirect("/work")
+} else{
+
+
+// push item into the items array
  items.push(item);
 
 // once item is saved, redirected to home route
 
 res.redirect("/")
+}
+
+
    
+});
+
+// render and get the the work page
+app.get("/work", function(req,res){
+res.render("list", {listTitle: "Work List", newListItems: workItems} );
+
+})
+
+// post new work items into the work items array
+app.post("/work", function(req,res){
+
+    let item = req.body.newItem;
+    workItems.push(item);
+    res.redirect("/work")
 })
 
 // local server
