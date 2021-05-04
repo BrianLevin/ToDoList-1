@@ -49,11 +49,24 @@ const item2 =  new Item ({
 
 const item3 =  new Item ({
    
-    name: " Hit this to delete an item"
+    name: "  <-- Hit this to delete an item"
 });
 // array holding values
 const defaultItems = [item1, item2, item3];
 
+
+
+
+// home route
+app.get("/", function (req, res) {
+
+
+
+
+    // find everthing in items collection to send over to list.ejs
+Item.find({}, function(err,foundItems){
+    // if statement which will create items if there are no items in the collection
+    if (foundItems.length === 0) {
 // insert item and array to database
 Item.insertMany(defaultItems, function(err){
    
@@ -64,24 +77,18 @@ Item.insertMany(defaultItems, function(err){
         console.log("Successfully saved default items to database")
     }
 });
+res.redirect("/");
 
-// home route
-app.get("/", function (req, res) {
-
-    // find everthing in items collection to send over to list.ejs
-Item.find({}, function(err,foundItems){
-    
-  
-  // pass title and  foundItems to list.ejs
+    } else{
+         // pass title and  foundItems to list.ejs
   res.render("list", {listTitle:"Today", newListItems: foundItems})
 
-})
+    }
+    
+  
+ 
 
-
-
-  // switch statement to see what specific day it is
-
-   
+});
 
   
 });
@@ -89,29 +96,25 @@ Item.find({}, function(err,foundItems){
 // post request which will post the data from the input new Item to the sever
 
 app.post("/", function(req,res){
-    // body parser allows to grab value from new Item and saved
+  // text user puts in the input box
+const itemName = req.body.newItem;
 
-     const item= req.body.newItem;
+// new item document based off  model in  mongo db
+const item = new Item({
 
-if (req.body.list === "Work") {
-
-    // push to work items array
-workItems.push(item)
-res.redirect("/work")
-} else{
-
-
-// push item into the items array
- items.push(item);
-
-// once item is saved, redirected to home route
-
-res.redirect("/")
-}
-
+    name: itemName
+})
+// mongoose shortcut to save new items
+item.save();
+// redirect to home page
+res.redirect ("/");
 
    
 });
+app.post("/delete", function(req,res){
+
+    console.log(req.body.checkbox)
+})
 
 // render and get the the work page
 app.get("/work", function(req,res){
