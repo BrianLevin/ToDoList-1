@@ -5,8 +5,7 @@ const bodyParser = require("body-parser");
 
 const mongoose = require("mongoose");
 
-// use local date.js module
-const date= require( __dirname  + "/date.js")
+
 
 
 
@@ -34,12 +33,14 @@ const itemsSchema = {
     name: String
 
 }
+// new model based on the schema
+const Item = mongoose.model("Item", itemsSchema)
 
 // home route
 app.get("/", function (req, res) {
 // hold value for the date module and call it here 
 
-const day =date.getDate();
+
 
 
   // switch statement to see what specific day it is
@@ -48,7 +49,7 @@ const day =date.getDate();
     // day variable gets rendered here
 
     // rediretced from post route and then render the kindof day and the new list item
-    res.render("list", {listTitle:day, newListItems: items})
+    res.render("list", {listTitle:"Today", newListItems: items})
 });
 
 // post request which will post the data from the input new Item to the sever
