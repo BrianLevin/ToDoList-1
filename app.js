@@ -54,6 +54,14 @@ const item3 =  new Item ({
 // array holding values
 const defaultItems = [item1, item2, item3];
 
+// schema for which the objects documents will be based on
+const listSchema = {
+name: String,
+item: [itemsSchema]
+
+}
+// new model based on the schema // item will be collection
+const List = mongoose.model("List", listSchema);
 
 
 
@@ -95,8 +103,18 @@ res.redirect("/");
 });
 // dynamic get route that goes to a custom page
 app.get("/:customListName", function (req,res){
-console.log(req.params.customListName);
-})
+    // this holds what ever the user enters after the fprward slash
+const customListName= (req.params.customListName);
+
+// document which will pass into the list model
+const list= new List({
+    name: customListName,
+    items:defaultItems
+});
+
+list.save();
+
+});
 
 // post request which will post the data from the input new Item to the sever
 
