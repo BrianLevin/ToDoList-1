@@ -3,6 +3,11 @@ const express = require("express");
 //  acts as middle wear parses the  incoming requests and data before it is handled
 const bodyParser = require("body-parser");
 
+// use local date.js module
+const date= require( __dirname  + "/date.js")
+
+console.log(date());
+
 // Creating app which utilizes the express package
 const app = express();
 
@@ -24,19 +29,7 @@ app.use(express.static("public"))
 
 // home route
 app.get("/", function (req, res) {
-  // variable which  hold the new date meth
-  let today = new Date();
-
-  // options object which will display  and render values in a specific way ex. april 2th
-let options = {
-
-    weekday:"long",
-    day: "numeric",
-    month: "long"
-};
-
-// variable which  will hold method to render the options and for it to be in english
-let day = today.toLocaleDateString("en-US", options)
+ 
 
   // switch statement to see what specific day it is
 
