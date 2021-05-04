@@ -88,6 +88,11 @@ app.post("/work", function(req,res){
     res.redirect("/work")
 })
 
+app.get("/about", function(req,res){
+res.render("about")
+
+})
+
 // local server
 app.listen(3000, function () {
   console.log("Server is running on port 3000!");
