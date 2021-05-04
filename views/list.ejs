@@ -9,19 +9,17 @@
 
         <div class = "box">
 
-            
-        
-        
-                <!--  loop through list items array and render list items on page within the list tags-->
-        
-                 <% for (var i=0; i<newListItems.length; i++) { %>
-                     <div class= "item">
-                         <input type="checkbox">
+            <!-- for each loop whcih will loop through the items and display the name on ejs page-->
+        <% newListItems.forEach(function(item){ %>
+            <div class= "item">
+                <input type="checkbox">
 
-                        <p><%= newListItems[i]%></p>
-                     </div>
-              
-                <% } %>
+               <p><%=item.name%></p>
+            </div>
+       <%   }) %>
+        
+                
+        
 
         <!-- post info to the server at the home route-->
    <form class= "item" action= "/" method= "post" >
