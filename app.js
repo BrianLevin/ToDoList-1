@@ -6,8 +6,8 @@ const bodyParser = require("body-parser");
 // Creating app which utilizes the express package
 const app = express();
 
-// this is where new items will get stored
-var items= [];
+// this is where new items will get stored, default items are also here
+var items= ["Buy Food", "Cook Food", "Eat Food"];
 
 // app will utilze ejs templating and view engine
 
