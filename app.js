@@ -174,8 +174,10 @@ app.post("/delete", function(req,res){
 
 // hold the check box variable when it is checked
     const checkedItemId = req.body.checkbox;
+    // value of listName
 const listName = req.body.listName;
 
+// deleting an item from the default list
 if(listName === "Today" ) {
 
 // method to remove chekced item
@@ -188,11 +190,12 @@ console.log("successfully deleted checked item.")
 res.redirect("/");
 
     }
-})    
+})  
+// deleting list from custom list  
 } else{
-
-    List.findOneAndUpdate( {name:listName}, {$pull:{items: {_id:checkedItemId}}}, callback, function(err,foundList){
-
+                // name of custom list // pull from items array // pull specific checked item id // callback func to find list
+    List.findOneAndUpdate( {name:listName}, {$pull:{items: {_id:checkedItemId}}}, function(err,foundList){
+// redirect to cusum list path
         if(!err) {
             res.redirect("/"+ listName);
         }
