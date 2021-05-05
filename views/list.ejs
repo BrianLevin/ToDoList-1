@@ -18,11 +18,12 @@
 
             
             <div class= "item">            <!-- input value which will allow for items to be deleted-->
-                <input type="checkbox" name= "checkbox"  value = "<%=item._id%>" onChange= "this.form.submit()">
+                <form type="checkbox" name= "checkbox"  value = "<%=item._id%>" onChange= "this.form.submit()">
 
                <p><%=item.name%></p>
             </div>
-
+            <!--invisable input-->
+<input type = "hidden"  name= "listName" value = "<%= listTitle %>"></input>
         </form>
        <%   }) %>
         

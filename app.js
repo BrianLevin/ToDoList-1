@@ -169,20 +169,38 @@ res.redirect ("/");
    
 });
 app.post("/delete", function(req,res){
+
 // hold the check box variable when it is checked
     const checkedItemId = req.body.checkbox;
-// method to remove chekced item
-    Item.findByIdAndRemove(checkedItemId, function(err){
+const listName = req.body.listName;
 
-        if (!err){
+if(listName === "Today" ) {
+
+// method to remove chekced item
+Item.findByIdAndRemove(checkedItemId, function(err){
+
+    if (!err){
 console.log("successfully deleted checked item.")
 
 // this redirect will display the deleted check items on the page
 res.redirect("/");
 
+    }
+})    
+} else{
+
+    List.findOneAndUpdate( {name:listName}, {$pull:{items: {_id:checkedItemId}}}, callback, function(err,foundList){
+
+        if(!err) {
+            res.redirect("/"+ listName);
         }
+
     })
+  
+}
+
 })
+
 
 
 
