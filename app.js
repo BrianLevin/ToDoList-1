@@ -142,16 +142,29 @@ res.redirect("/" + customListName);
 app.post("/", function(req,res){
   // text user puts in the input box
 const itemName = req.body.newItem;
+const listName= req.body.list;
 
 // new item document based off  model in  mongo db
 const item = new Item({
 
     name: itemName
 })
+// if list was from the default page
+if (listName=== "Today"){
 // mongoose shortcut to save new items
 item.save();
 // redirect to home page
 res.redirect ("/");
+// if user put in a custom list route, push items and then redirect to cuslim lists  nameroute and render it
+} else {
+    List.findOne({name:listName}, function(err, foundList){
+        foundList.items.push(item);
+        foundList.save();
+        res.redirect("/" + listName);
+    })
+}
+
+
 
    
 });
