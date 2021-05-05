@@ -108,7 +108,7 @@ app.get("/:customListName", function (req,res){
 
    
     // this holds what ever the user enters after the fprward slash
-const customListName= req.params.customListName;
+const customListName= _.capitalize(req.params.customListName);
 
 // method to make sure the list the user enters exists or doesnt exist already to prevent duplicate pages.
 List.findOne({name: customListName}, function(err,foundList){
