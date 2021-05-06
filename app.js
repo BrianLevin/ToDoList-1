@@ -1,5 +1,6 @@
 const express = require("express");
 
+const ejs = require("ejs");
 //  acts as middle wear parses the  incoming requests and data before it is handled
 const bodyParser = require("body-parser");
 
@@ -28,7 +29,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"))
 
 // crreate new database using mongo db connecting mongoose
-mongoose.connect("mongodb://localhost:27017/todolistDB", {useNewUrlParser: true});
+mongoose.connect(process.env.MONGODB_URI ||"mongodb://localhost:27017/todolistDB", {useNewUrlParser: true});
 
 // JSON object that defines the shape and content of the documents embedded in the document collection
 const itemsSchema = {
@@ -193,7 +194,7 @@ res.redirect("/");
 })  
 // deleting list from custom list  
 } else{
-                // name of custom list // pull from items array // pull specific checked item id // callback func to find list
+                // name of custom list // pull from items array to // pull specific checked item id // callback func to find list
     List.findOneAndUpdate( {name:listName}, {$pull:{items: {_id:checkedItemId}}}, function(err,foundList){
 // redirect to cusum list path
         if(!err) {
@@ -222,7 +223,8 @@ res.render("about")
 
 })
 
-// local server
-app.listen(3000, function () {
-  console.log("Server is running on port 3000!");
-});
+//  server
+
+app.listen(process.env.PORT|| 3000, function() {
+    console.log("Server started on port 3000");
+  });
