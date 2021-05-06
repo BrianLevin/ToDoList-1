@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"))
 
 // crreate new database using mongo db connecting mongoose
-mongoose.connect(process.env.MONGODB_URI ||"mongodb://localhost:27017/ToDoListDB", {useNewUrlParser: true});
+mongoose.connect(process.env.MONGODB_URI ||"mongodb://localhost:27017/todolistDB", {useNewUrlParser: true});
 
 // JSON object that defines the shape and content of the documents embedded in the document collection
 const itemsSchema = {
