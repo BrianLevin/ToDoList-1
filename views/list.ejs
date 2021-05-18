@@ -1,26 +1,28 @@
-<%- include("header")  -%>
+
+
+ <%- include("header")  -%>
 <!-- apply css from box class and special id-->
-        <div class= "box" id= "heading">
+<div class="box" id="heading">
 
 <!--value rendered from app.js-->
-<h1> <%= listTitle %></h1>
+<h1> <%= listTitle %> </h1>
 
         </div>
 
-        <div class = "box">
+        <div class="box">
 
             <!-- for each loop whcih will loop through the items and display the name on ejs page-->
-        <% newListItems.forEach(function(item){ %>
+            <%  newListItems.forEach(function(item){ %>
             <!-- form which will delete the items when  it is checked-->
-            <form  action= "/delete" method= "post">
+            <form action="/delete" method="post">
             
-            <div class= "item">            <!-- input value which will allow for items to be deleted-->
-                <input type="checkbox" name= "checkbox"  value = "<%=item._id%>" onChange= "this.form.submit()">
+                <div class="item">       <!-- input value which will allow for items to be deleted-->
+                    <input type="checkbox" name="checkbox" value="<%=item._id%>" onChange="this.form.submit()">
 
-               <p><%=item.name%></p>
-            </div>
+                    <p><%=item.name%></p>
+                </div>
             <!--invisable input-->
-<input type = "hidden"  name= "listName" value = "<%= listTitle %>"></input>
+            <input type="hidden" name="listName" value="<%= listTitle %>"></input>
         </form>
        <%   }) %>
         
@@ -28,19 +30,18 @@
         
 
         <!-- post info to the server at the home route-->
-   <form class= "item" action= "/" method= "post" >
+        <form class="item" action="/" method="post">
     <!-- user posts items-->
-    <input type = "text" name= "newItem" placeholder= "New Item" autocomplete= "off">
+    <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
                                                      <!--passing the litsTitle dynmaically-->
-    <button type = "submit" name=  "list" value=  <%= listTitle %>>+</button>
+   <button type="submit" name="list" value="<%= listTitle %>">+</button>
     
-    </form>
+        </form>
                 
                        
         </div>
 
-        <%- include ("footer") -%>
-             
+        <%- include("footer") -%>
 
      
 
